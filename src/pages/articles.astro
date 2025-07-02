@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { theme } from '../theme.config';
+import Reveal from '../components/Reveal.astro';
+
+const { articles } = theme;
+---
+<Layout title="My Articles">
+  <div class="mx-auto max-w-5xl px-4 py-16 sm:py-24">
+    <Reveal>
+      <div class="text-center">
+        <h1 class="text-4xl font-bold tracking-tight font-heading sm:text-5xl">
+          {articles.title}
+        </h1>
+        <p class="mt-4 text-lg leading-8 text-weak">
+          A collection of my thoughts and writings on AI, machine learning, and data.
+        </p>
+      </div>
+    </Reveal>
+
+    <Reveal>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+        {articles.items.map(article => (
+          <a
+            href={article.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card-container group"
+          >
+            <img 
+              src={article.image} 
+              alt={article.title}
+              class="card-image"
+            />
+            <div class="card-content">
+              <h3 class="card-title">{article.title}</h3>
+            </div>
+          </a>
+        ))}
+      </div>
+    </Reveal>
+  </div>
+</Layout>
+
+<style>
+  .card-container {
+    @apply block rounded-xl overflow-hidden bg-slate-800 border border-slate-700 shadow-lg transition-all duration-300;
+  }
+  .card-container:hover {
+    @apply -translate-y-1 shadow-2xl;
+  }
+  .card-image {
+    @apply w-full h-48 object-cover border-b border-slate-700;
+  }
+  .card-content {
+    @apply p-5;
+  }
+  .card-title {
+    @apply font-heading font-semibold text-default leading-snug;
+  }
+</style>

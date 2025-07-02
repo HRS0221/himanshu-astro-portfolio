@@ -1,0 +1,97 @@
+/* 1. FONT SETUP */
+@font-face {
+  font-family: 'Geist';
+  src: url('https://cdn.jsdelivr.net/npm/geist@1/dist/fonts/geist-sans/Geist-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('https://cdn.jsdelivr.net/npm/geist@1/dist/fonts/geist-mono/GeistMono-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* 2. THEME SETUP: Default variables (Light Mode) */
+:root {
+  /* Base Colors */
+  --color-text-default: var(--color-neutral-900);
+  --color-text-weak: var(--color-neutral-600);
+  --color-bg-page: var(--color-neutral-100);
+  --color-border-default: var(--color-neutral-300);
+
+  /* Brand Colors */
+  --color-brand-primary: var(--color-brand-600);
+  --color-brand-secondary: var(--color-brand-700);
+  --color-text-brand: var(--color-brand-600);
+}
+
+/* 3. DARK MODE THEME */
+html[data-theme='dark'] {
+  --color-text-default: var(--color-neutral-200);
+  --color-text-weak: var(--color-neutral-400);
+  --color-bg-page: var(--color-neutral-900);
+  --color-border-default: var(--color-neutral-700);
+
+  --color-brand-primary: var(--color-brand-500);
+  --color-brand-secondary: var(--color-brand-600);
+  --color-text-brand: var(--color-brand-500);
+}
+
+
+/* 4. COLOR PALETTES (activated by data-attributes) */
+/* Neutral: Slate */
+html[data-color-neutral='slate'] {
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #f8fafc;
+  --color-neutral-300: #e2e8f0;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+}
+
+/* Brand: Cyan */
+html[data-color-brand='cyan'] {
+  --color-brand-100: #ecfeff;
+  --color-brand-200: #cffafe;
+  --color-brand-300: #a5f3fc;
+  --color-brand-400: #67e8f9;
+  --color-brand-500: #22d3ee;
+  --color-brand-600: #06b6d4;
+  --color-brand-700: #0891b2;
+  --color-brand-800: #0e7490;
+  --color-brand-900: #164e63;
+}
+
+/* Brand: Violet */
+html[data-color-brand='violet'] {
+  --color-brand-100: #f5f3ff;
+  --color-brand-200: #ede9fe;
+  --color-brand-300: #ddd6fe;
+  --color-brand-400: #c4b5fd;
+  --color-brand-500: #a78bfa;
+  --color-brand-600: #8b5cf6;
+  --color-brand-700: #7c3aed;
+  --color-brand-800: #6d28d9;
+  --color-brand-900: #5b21b6;
+}
+
+/* Accent: Red */
+html[data-color-accent='red'] {
+  --color-accent-100: #fff1f2;
+  --color-accent-200: #ffe4e6;
+  --color-accent-300: #fecdd3;
+  --color-accent-400: #fda4af;
+  --color-accent-500: #f87171;
+  --color-accent-600: #ef4444;
+  --color-accent-700: #dc2626;
+  --color-accent-800: #b91c1c;
+  --color-accent-900: #991b1b;
+}

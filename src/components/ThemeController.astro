@@ -1,0 +1,30 @@
+---
+// src/components/ThemeController.astro
+import { theme } from '../theme.config';
+
+const { colors } = theme;
+---
+<script define:vars={{ colors }} is:inline>
+  const root = document.documentElement;
+  const savedTheme = localStorage.getItem('theme');
+
+  // Set data attributes for colors from our config file
+  root.dataset.colorBrand = colors.brand;
+  root.dataset.colorNeutral = colors.neutral;
+  root.dataset.colorAccent = colors.accent;
+
+  // Set the theme (dark/light)
+  if (savedTheme) {
+    root.dataset.theme = savedTheme;
+  } else {
+    // If no saved theme, use the system preference
+    root.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  // Watch for changes in system preference
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!localStorage.getItem('theme')) {
+       root.dataset.theme = e.matches ? 'dark' : 'light';
+    }
+  });
+</script>

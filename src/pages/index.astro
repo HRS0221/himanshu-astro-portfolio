@@ -1,16 +1,53 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import { theme } from '../theme.config';
+import Button from '../components/Button.astro';
+import Reveal from '../components/Reveal.astro';
+import SkillCard from '../components/SkillCard.astro';
 
+const { home, person, skills } = theme;
 ---
+<Layout title="Home Page">
+  <div class="mx-auto max-w-3xl px-4 pt-32 pb-16 text-center">
+    <Reveal>
+      <h1
+        class="text-4xl font-bold tracking-tight sm:text-6xl"
+        style={{ fontFamily: 'var(--font-heading)' }}
+      >
+        {home.headline}
+      </h1>
+    </Reveal>
+    <Reveal>
+      <p class="mt-6 text-lg leading-8 text-weak]">
+        {home.subline}
+      </p>
+    </Reveal>
+    <Reveal>
+      <div class="mt-10">
+        <Button href={home.aboutPath}>
+          <img src={person.avatar} alt="Avatar" class="mr-2 h-6 w-6 rounded-full" />
+          {home.aboutLabel}
+        </Button>
+      </div>
+    </Reveal>
+  </div>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+  <section class="mx-auto max-w-3xl px-4 py-16">
+    <Reveal>
+      <h2 
+        class="text-3xl font-bold text-center"
+        style={{ fontFamily: 'var(--font-heading)' }}
+      >
+        Core Competencies
+      </h2>
+    </Reveal>
+    
+    <div class="mt-8">
+      {skills.map(skill => (
+        <Reveal>
+          <SkillCard skill={skill} />
+        </Reveal>
+      ))}
+    </div>
+  </section>
+</Layout>

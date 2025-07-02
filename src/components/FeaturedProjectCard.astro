@@ -1,0 +1,46 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Button from './Button.astro';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  isReversed?: boolean;
+}
+
+const { project, isReversed = false } = Astro.props;
+const { title, summary, images, tag, techStack, link, outputLink } = project.data;
+---
+<div class:list={[
+  "grid md:grid-cols-2 gap-8 md:gap-12 items-center",
+  { 'md:grid-flow-col-dense': isReversed }
+]}>
+  <div class:list={[ "rounded-lg overflow-hidden shadow-lg", { 'md:order-last': isReversed } ]}>
+    <a href={`/work/${project.slug}`}>
+      <img
+        src={images[0]}
+        alt={title}
+        width="1200"
+        height="750"
+        class="w-full h-auto object-cover aspect-video transition-transform duration-300 hover:scale-105"
+      />
+    </a>
+  </div>
+  <div>
+    <p class="text-sm font-semibold text-brand">{tag}</p>
+    <h3 class="mt-2 text-2xl font-bold font-heading">
+      <a href={`/work/${project.slug}`} class="hover:underline">{title}</a>
+    </h3>
+    <p class="mt-3 text-weak">{summary}</p>
+    <div class="mt-4 flex flex-wrap gap-2">
+      {techStack.map((tech: string) => (
+        <span class="px-3 py-1 text-xs rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+          {tech}
+        </span>
+      ))}
+    </div>
+    <div class="mt-6 flex flex-wrap gap-4">
+      {link && <Button href={link} variant="primary">View Code</Button>}
+      {outputLink && <Button href={outputLink} variant="secondary">View Output</Button>}
+    </div>
+  </div>
+</div>

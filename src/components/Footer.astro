@@ -1,0 +1,48 @@
+---
+// src/components/Footer.astro
+import { theme } from '../theme.config';
+const { social } = theme;
+const currentYear = new Date().getFullYear();
+---
+<footer class="footer-container">
+  <div class="social-links">
+    {social.map(item => (
+      <a href={item.href} target="_blank" rel="noopener noreferrer" title={item.name}>
+        {item.name}
+      </a>
+    ))}
+  </div>
+  <p class="copyright">
+    &copy; {currentYear} Himanshu Salunke. All rights reserved.
+  </p>
+</footer>
+
+<style>
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* 24px */
+    padding: 3rem 1.5rem; /* 48px 24px */
+    border-top: 1px solid var(--color-border-default);
+  }
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem; /* 24px */
+  }
+  .social-links a {
+    color: var(--color-text-weak);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: 500;
+  }
+  .social-links a:hover {
+    color: var(--color-text-brand);
+  }
+  .copyright {
+    font-size: 0.875rem; /* 14px */
+    color: var(--color-text-weak);
+  }
+</style>

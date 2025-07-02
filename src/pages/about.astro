@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { theme } from '../theme.config';
+import Reveal from '../components/Reveal.astro';
+
+const { about } = theme;
+---
+<Layout title={about.title}>
+  <div class="mx-auto max-w-3xl px-4 py-16 sm:py-24">
+    <Reveal>
+      <div class="text-center">
+        <h1 class="text-4xl font-bold tracking-tight font-heading sm:text-5xl">About Me</h1>
+        <p class="mt-4 text-lg leading-8 text-weak">A little more about my journey and skills.</p>
+      </div>
+    </Reveal>
+    
+    <div class="mt-16 space-y-16">
+      <Reveal>
+        <section>
+          <h2 class="text-2xl font-bold font-heading">{about.intro.title}</h2>
+          <p class="mt-4 text-weak leading-relaxed whitespace-pre-line">{about.intro.description}</p>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section>
+          <h2 class="text-2xl font-bold font-heading">{about.work.title}</h2>
+          <div class="mt-6 space-y-8 border-l-2 border-slate-200/50 pl-8">
+            {about.work.experiences.map((exp: any) => (
+              <div class="relative">
+                <div class="absolute -left-9 top-1 h-2 w-2 rounded-full bg-brand"></div>
+                <h3 class="text-lg font-semibold">{exp.role}</h3>
+                <p class="text-sm text-weak">{exp.company} / {exp.timeframe}</p>
+                <ul class="mt-2 list-disc list-inside space-y-1 text-weak">
+                  {exp.achievements.map((ach: any) => <li>{ach}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section>
+          <h2 class="text-2xl font-bold font-heading">{about.studies.title}</h2>
+          <div class="mt-6 space-y-6 border-l-2 border-slate-200/50 pl-8">
+            {about.studies.institutions.map((study: any) => (
+              <div class="relative">
+                 <div class="absolute -left-9 top-1 h-2 w-2 rounded-full bg-brand"></div>
+                <h3 class="text-lg font-semibold">{study.institution}</h3>
+                <p class="text-sm text-weak">{study.degree} / {study.timeframe}</p>
+                <p class="text-sm text-weak">{study.cgpa}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </Reveal>
+      
+      <Reveal>
+        <section>
+          <h2 class="text-2xl font-bold font-heading">{about.technical.title}</h2>
+          <div class="mt-6 space-y-4">
+            {about.technical.skills.map((skill: any) => (
+              <div class="py-2">
+                <h3 class="text-md font-semibold">{skill.title}:</h3>
+                <p class="text-weak">{skill.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section>
+          <h2 class="text-2xl font-bold font-heading">{about.credentials.title}</h2>
+          <div class="mt-6 space-y-4">
+            {about.credentials.items.map((cred: any) => (
+              <div>
+                <a href={cred.link} target="_blank" rel="noopener noreferrer" class="text-brand font-semibold hover:underline">
+                  {cred.name} ↗
+                </a>
+                <p class="text-sm text-weak">{cred.issuer} - {cred.date}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </Reveal>
+      
+      <Reveal>
+        <section>
+          <h2 class="text-2xl font-bold font-heading">{about.achievements.title}</h2>
+          <div class="mt-6 space-y-6">
+            {about.achievements.items.map((item: any) => (
+              <div>
+                <h3 class="text-lg font-semibold">{item.title}</h3>
+                <p class="text-weak">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </Reveal>
+    </div>
+  </div>
+</Layout>
+/*
+  This page provides a detailed overview of the user's background, work experience, education, technical skills, credentials, and achievements.
+  It uses the Reveal component for animations and is styled to match the overall theme of the site.
+*/

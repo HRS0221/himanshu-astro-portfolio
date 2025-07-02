@@ -1,0 +1,34 @@
+---
+// src/components/SkillCard.astro
+interface Skill {
+  name: string;
+  description: string;
+  projectSlug: string;
+}
+
+interface Props {
+  skill: Skill;
+}
+
+const { skill } = Astro.props;
+---
+<div class="border-b border-[--color-border-default] py-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+  <div class="flex-grow">
+    <h3 
+      class="text-xl font-bold"
+      style={{ fontFamily: 'var(--font-heading)' }}
+    >
+      {skill.name}
+    </h3>
+    <p class="mt-2 text-[--color-text-weak]">
+      {skill.description}
+    </p>
+  </div>
+  
+  <a 
+    href={`/work/${skill.projectSlug}`} 
+    class="shrink-0 font-semibold text-[--color-text-brand] hover:underline whitespace-nowrap"
+  >
+    View Project →
+  </a>
+</div>
